@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">GeoTwitter_ESIEA</string>
+    <string name="hello">Hello World !</string>
+    <string name="home">Home</string>
+    <string name="about">About</string>
+    <string name="device_location">Actual location</string>
+    <string name="search_location">Find location</string>
+    <string name="search_placeholder">Enter a City or an address</string>
+    <string name="search_tweets">Search for tweets</string>
+    <string name="credits">Credits</string>
+    <string name="about_text">This project was made by Charly DE COLA and Jules Angue with the Twitter API</string>
+    <string name="src_code">You can find the source code here :</string>
+    <string name="link_github">https://github.com/CharlyDcl/Projet_Android_DECOLA_ANGUE</string>
+</resources>

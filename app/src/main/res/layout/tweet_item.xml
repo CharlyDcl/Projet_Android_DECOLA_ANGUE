@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="240dp"
+    android:layout_marginTop="5dp"
+    android:padding="8dp"
+    android:background="@drawable/background_tweet">
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="135dp"
+        android:layout_marginTop="35dp"
+        android:id="@+id/picture"
+        android:background="@drawable/loading_shape" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="8dp"
+        android:orientation="vertical"
+        >
+
+
+        <TextView
+            android:id="@+id/user"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="user"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tweet"
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:layout_marginTop="30dp"
+            android:layout_alignParentStart="true"
+            android:layout_toEndOf="@+id/user"
+            android:textAlignment="center"
+            android:text="Kkdjfndinddnddfdzdadajdnajdnajbfjabdbjafhuabhdjbhqusfbqsobhfdoqsgbfoibazoufbojqzhfdoiqshoidfhqsohdojqshdoqshoidhqsoidhqsoihdokqshoifdhqsoifhdoiqshfoiqshifqsoifhoiqshfiqshoifhqsuhfoiqshifhaszoihfoqsihfqsoidazfqsskfjosidgfjqsjfohodqsufoqsgfjsdihdshfiqsyifqsihfsqy_ffqsfsfsqfsqbfqsgd"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/fav"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="5dp"
+            android:drawableStart="@drawable/ic_fav"
+            android:text="favorite" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/retweet"
+            android:layout_alignBaseline="@+id/fav"
+            android:layout_alignBottom="@+id/fav"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="40dp"
+            android:drawableStart="@drawable/ic_retweet"
+            android:text="retweet" />
+
+
+    </RelativeLayout>
+
+
+
+
+</LinearLayout>
