@@ -19,13 +19,11 @@ import java.util.List;
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
     private Context mcontext;
     private List<Tweet> lTweet;
-   // RequestOptions option;
 
     public RecyclerViewAdapter(Context mcontext, List<Tweet> lTweet) {
         this.mcontext = mcontext;
         this.lTweet = lTweet;
 
-       // option = new RequestOptions().centerCrop().placeholder(R.drawable.loading_shape).error(R.drawable.loading_shape);
     }
 
     @Override
@@ -47,8 +45,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.retweet.setText(lTweet.get(position).getRt_nb());
 
         Picasso.with(mcontext).load(lTweet.get(position).getImage_url()).into(holder.picture);
-
-
     }
 
     @Override

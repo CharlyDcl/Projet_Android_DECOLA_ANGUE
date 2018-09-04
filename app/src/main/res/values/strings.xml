@@ -12,4 +12,5 @@
     <string name="about_text">This project was made by Charly DE COLA and Jules Angue with the Twitter API</string>
     <string name="src_code">You can find the source code here :</string>
     <string name="link_github">https://github.com/CharlyDcl/Projet_Android_DECOLA_ANGUE</string>
+    <string name="credits_notif">Our Credits</string>
 </resources>

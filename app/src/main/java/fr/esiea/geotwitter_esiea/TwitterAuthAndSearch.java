@@ -3,10 +3,12 @@ package fr.esiea.geotwitter_esiea;
 import android.app.IntentService;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.LocalBroadcastManager;
 
 import java.util.List;
+import java.util.Locale;
 
 import twitter4j.GeoLocation;
 import twitter4j.Query;
@@ -24,8 +26,11 @@ import twitter4j.conf.ConfigurationBuilder;
 
 public class TwitterAuthAndSearch extends IntentService {
 
+    private static Query query;
+
     private static double lng;
     private static double lat;
+    private static String language;
 
     private static final String CONSUMER_KEY = "Bij0qQHZdOTX1ddUee0dj6PNY";
     private static final String CONSUMER_SECRET = "qNqrSrSUe701KijylZEgwNl65uVkuONUqg28LQtLznvrzFIsPL";
@@ -35,7 +40,9 @@ public class TwitterAuthAndSearch extends IntentService {
         super("TwitterAuthAndSearch");
     }
 
-    public static void startActionAuthAndSearch(Context context, double lat,double lng) {
+    public static void startActionAuthAndSearch(Context context, double lat, double lng) {
+        TwitterAuthAndSearch.lat = lat;
+        TwitterAuthAndSearch.lng = lng;
         Intent intent = new Intent(context, TwitterAuthAndSearch.class);
         intent.setAction(ACTION_authentication);
         context.startService(intent);
@@ -51,6 +58,8 @@ public class TwitterAuthAndSearch extends IntentService {
     }
 
     private List<Status> handleActionAuthAndSearch() throws TwitterException {
+
+        //authentication with API keys
         ConfigurationBuilder builder = new ConfigurationBuilder();
         builder.setApplicationOnlyAuthEnabled(true);
         builder.setOAuthConsumerKey(CONSUMER_KEY);
@@ -59,27 +68,37 @@ public class TwitterAuthAndSearch extends IntentService {
         Twitter twitter = new TwitterFactory(configuration).getInstance();
         twitter.getOAuth2Token();
 
-        //example paris geolocation
-        lat = 48.866667;
-        lng = 2.333333;
-        Query query = new Query();
-        GeoLocation loc = new GeoLocation(lat,lng);
+        //example for Paris geolocation
+        //lat = 48.866667;
+        //lng = 2.333333;
+
+        //define query parameters
+        GeoLocation loc = new GeoLocation(lat, lng);
         Query.Unit unit = Query.KILOMETERS;
-        query.setGeoCode(loc,100,unit);
+        language = Locale.getDefault().getLanguage();
 
-        QueryResult result;
+        //build the query
+        query = new Query();
+        query.setGeoCode(loc, 100, unit);
+        query.setLang(language);
 
+        //search with query and get result
+        QueryResult result = twitter.search(query);
 
-            result = twitter.search(query);
-            List<Status> tweets = result.getTweets();
-        LocalBroadcastManager.getInstance(this).sendBroadcast(new Intent(DisplayTweetActivity.SET_TWEET).putExtra("result",result));
+        List<Status> tweets = result.getTweets();
 
-            for (Status tweet : tweets) {
+        //send result with broadcast
+        Bundle arguments = new Bundle();
+        arguments.putSerializable("Result", result);
+        Intent intentResult = new Intent(DisplayTweetActivity.SET_TWEET).putExtra("DataResult", arguments);
+        LocalBroadcastManager.getInstance(this).sendBroadcast(intentResult);
 
-                System.out.println("@ fav : " + tweet.getUser().getFavouritesCount());
-                //System.out.println("fav :" + tweet.getFavoriteCount());
+        for (Status tweet : tweets) {
+            System.out.println("result : " + result);
+            //System.out.println("in twitterauthandsearch @ fav : " + tweet.getUser().getFavouritesCount());
+            //System.out.println("fav :" + tweet.getFavoriteCount());
 
-            }
+        }
         return tweets;
     }
 
