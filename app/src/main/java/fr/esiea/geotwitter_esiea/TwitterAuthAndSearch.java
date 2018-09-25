@@ -32,8 +32,8 @@ public class TwitterAuthAndSearch extends IntentService {
     private static double lat;
     private static String language;
 
-    private static final String CONSUMER_KEY = "Bij0qQHZdOTX1ddUee0dj6PNY";
-    private static final String CONSUMER_SECRET = "qNqrSrSUe701KijylZEgwNl65uVkuONUqg28LQtLznvrzFIsPL";
+    private static final String CONSUMER_KEY = "YOUR_CONSUMER_KEY";
+    private static final String CONSUMER_SECRET = "YOUR_CONSUMER_SECRET";
     private static final String ACTION_authentication = "fr.esiea.geotwitter_esiea.action.authentication";
 
     public TwitterAuthAndSearch() {
